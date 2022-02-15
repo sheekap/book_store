@@ -27,7 +27,7 @@ defmodule BookStore.Store.Book do
 
   defp generate_full_name(changeset) do
     case changeset do
-      %Ecto.Changeset{valid?: true, changes: %{author_first_name: first_name, author_layealast_name: last_name}} ->
+      %Ecto.Changeset{valid?: true, changes: %{author_first_name: first_name, author_last_name: last_name}} ->
         put_change(changeset, :author_full_name, "#{first_name} #{last_name}")
       _ -> changeset
     end

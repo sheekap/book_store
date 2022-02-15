@@ -20,8 +20,8 @@ Enum.each(1..50, fn _x ->
   price = String.to_float("#{Enum.random(1..200)}.#{Enum.random(1..99)}")
 
   {:ok, _book} = Store.create_book(%{
-    author_first_name: Faker.Person.first_name,
-    author_last_name: Faker.Person.last_name,
+    author_first_name: Faker.Person.first_name(),
+    author_last_name: Faker.Person.last_name(),
     description: Faker.Lorem.Shakespeare.En.hamlet(),
     genre: genre,
     isbn: Faker.Code.isbn(),
