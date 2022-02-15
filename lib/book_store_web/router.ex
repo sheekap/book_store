@@ -14,6 +14,12 @@ defmodule BookStoreWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/", BookStoreWeb do
+    pipe_through :browser
+
+    live "/admin", AdminLive
+  end
+
   scope "/api", BookStoreWeb do
     pipe_through :api
 
