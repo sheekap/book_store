@@ -25,6 +25,9 @@ defmodule BookStoreWeb.AdminLive do
         <span><%= @num_authors %></span>
       </div>
     </div>
+    <div>
+    <button>Refresh</button>
+    </div>
     """
   end
 end
