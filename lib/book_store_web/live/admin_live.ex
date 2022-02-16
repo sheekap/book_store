@@ -4,6 +4,8 @@ defmodule BookStoreWeb.AdminLive do
   alias BookStore.Store
 
   def mount(_params, _session, socket) do
+    if connected?(socket), do: :timer.send_interval(1000, self(), :tick)
+
     socket = assign_counts(socket)
     {:ok, socket}
   end
@@ -28,6 +30,11 @@ defmodule BookStoreWeb.AdminLive do
   end
 
   def handle_event("refresh", _, socket) do
+    socket = assign_counts(socket)
+    {:noreply, socket}
+  end
+
+  def handle_info(:tick, socket) do
     socket = assign_counts(socket)
     {:noreply, socket}
   end
