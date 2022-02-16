@@ -1,21 +1,30 @@
 defmodule BookStoreWeb.AdminLive do
   use BookStoreWeb, :live_view
 
+  alias BookStore.Store
+
   def mount(_params, _session, socket) do
     socket =
       assign(socket,
-        avg_price_per_genre: 10.00,
-        num_books: 200,
-        num_authors: 12,
-        avg_books_per_author: 2
+        num_books: Enum.count(Store.list_books),
+        num_authors: Enum.count(Store.list_authors)
       )
     {:ok, socket}
   end
 
   def render(assigns) do
     ~H"""
-    <h1>Admin</h1>
-    <%= @num_books %>
+    <div>
+      <h1>Admin Stuff</h1>
+      <div>
+        <p>Total Number of Books</p>
+        <span><%= @num_books %></span>
+      </div>
+      <div>
+        <p>Total Number of Authors</p>
+        <span><%= @num_authors %></span>
+      </div>
+    </div>
     """
   end
 end

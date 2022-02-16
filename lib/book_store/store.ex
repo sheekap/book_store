@@ -5,7 +5,6 @@ defmodule BookStore.Store do
 
   import Ecto.Query, warn: false
   alias BookStore.Repo
-
   alias BookStore.Store.Book
 
   @doc """
@@ -100,5 +99,10 @@ defmodule BookStore.Store do
   """
   def change_book(%Book{} = book, attrs \\ %{}) do
     Book.changeset(book, attrs)
+  end
+
+  def list_authors do
+    authors = from(b in Book, select: %{name: b.author_full_name}) |> Repo.all()
+    Enum.uniq(authors)
   end
 end
